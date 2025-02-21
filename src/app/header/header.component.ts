@@ -9,16 +9,4 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
   title = input('Default title');
-
-  // navigateHome = ()=>{
-  //   console.log("home")
-  // }
-
-  // navigatePage1 = ()=>{
-  //   console.log("page1")
-  // }
-
-  // navigatePage2 = ()=> [
-  //   console.log("page2")
-  // ]
 }
