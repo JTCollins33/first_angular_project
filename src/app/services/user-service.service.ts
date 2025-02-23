@@ -46,6 +46,5 @@ export class UserServiceService {
     this.userList = this.userList.filter(user => {
       return user.id !== userId
     });
-    console.log(this.userList)
   }
 }

@@ -32,6 +32,7 @@ export class Page1Component {
 
   deleteUser(userId: number){
     this.userService.deleteUser(userId);
+    this.ngOnInit();
   }
 
 }
