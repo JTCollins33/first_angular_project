@@ -30,4 +30,8 @@ export class Page1Component {
     console.log("ng change: "+value);
   }
 
+  deleteUser(userId: number){
+    this.userService.deleteUser(userId);
+  }
+
 }

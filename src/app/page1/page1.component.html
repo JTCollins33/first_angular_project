@@ -12,9 +12,9 @@
 <form>
     <label>Trigger Change Ng</label><br/>
     <input 
-        name="userSearch" 
-        [ngModel]="searchUsersNg" 
-        (ngModelchange)="nGChange($event)" 
+        name="searchUsersNg" 
+        [(ngModel)]="searchUsersNg" 
+        (ngModelChange)="nGChange($event)" 
         placeholder="Search users..."
     />
 </form>
@@ -31,7 +31,11 @@
 
 <ul>
     @for(user of userList() | filterUsers : searchUsers(); track user.id){
-        <li>{{user.name}}</li>
+        <div class="name-row">
+            <li>{{user.name}}</li>
+            <button class="delete-button" (click)="deleteUser(user.id)">Delete</button>
+        </div>
+    
     }
 </ul>
 
