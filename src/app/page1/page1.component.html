@@ -1,0 +1,40 @@
+<h3>Let's display all users</h3>
+
+<form>
+    <label>Trigger Change Normal</label><br/>
+    <input 
+        [value]="searchUsersNormal" 
+        (change)="normalChange($event)" 
+        placeholder="Search users..."
+    />
+</form>
+
+<form>
+    <label>Trigger Change Ng</label><br/>
+    <input 
+        name="searchUsersNg" 
+        [(ngModel)]="searchUsersNg" 
+        (ngModelChange)="nGChange($event)" 
+        placeholder="Search users..."
+    />
+</form>
+
+<br/><br/>
+<form>
+    <label>Filter Users</label><br/>
+    <input 
+        name="searchUser" 
+        [(ngModel)]="searchUsers" 
+        placeholder="Search users..."
+    />
+</form>
+
+<ul>
+    @for(user of userList() | filterUsers : searchUsers(); track user.id){
+        <div class="name-row">
+            <li>{{user.name}}</li>
+            <button class="delete-button" (click)="deleteUser(user.id)">Delete</button>
+        </div>
+    }
+</ul>
+
