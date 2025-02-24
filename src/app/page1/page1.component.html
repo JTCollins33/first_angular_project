@@ -37,4 +37,13 @@
         </div>
     }
 </ul>
+<br/><br/>
+
+@if(addNewUserFlag){
+    <app-add-user [openModal]="addNewUserFlag"/>
+}
+@else {
+    <button (click)="toggleAddNewUserFlag()">Add New User</button>
+}
+
 

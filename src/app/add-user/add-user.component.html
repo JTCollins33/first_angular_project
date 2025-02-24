@@ -1,0 +1,17 @@
+<h3>Add a new user</h3>
+<form>
+    <div>
+        <label>Name</label>
+        <input name="newUserName" [(ngModel)]="newUserName" placeholder="Add name"/>
+    </div>
+    <div>
+        <label>Age</label>
+        <input name="newUserAge" [(ngModel)]="newUserAge" placeholder="Add age"/>
+    </div>
+    <div>
+        <label>Id</label>
+        <input name="newUserId" [(ngModel)]="newUserId" placeholder="Add id"/>
+    </div>
+
+    <button (click)="addNewUser()">Submit</button>
+</form>

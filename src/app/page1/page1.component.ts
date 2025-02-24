@@ -3,10 +3,11 @@ import { UserServiceService } from '../services/user-service.service';
 import { User } from '../model/user.type';
 import { FormsModule } from '@angular/forms';
 import { FilterUsersPipe } from '../pipes/filter-users.pipe';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   selector: 'app-page1',
-  imports: [FormsModule, FilterUsersPipe],
+  imports: [FormsModule, FilterUsersPipe, AddUserComponent],
   templateUrl: './page1.component.html',
   styleUrl: './page1.component.scss'
 })
@@ -17,6 +18,8 @@ export class Page1Component {
   searchUsersNormal="";
   searchUsersNg="";
   searchUsers=signal('');
+
+  addNewUserFlag=false;
 
   ngOnInit(): void {
     this.userList.set(this.userService.getUsers());
@@ -33,6 +36,10 @@ export class Page1Component {
   deleteUser(userId: number){
     this.userService.deleteUser(userId);
     this.ngOnInit();
+  }
+
+  toggleAddNewUserFlag(){
+    this.addNewUserFlag = !this.addNewUserFlag;
   }
 
 }

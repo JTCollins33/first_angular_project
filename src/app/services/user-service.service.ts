@@ -47,4 +47,14 @@ export class UserServiceService {
       return user.id !== userId
     });
   }
+
+  addUser(userId: number, userName: string, userAge: number){
+    const newUser = {
+      id: userId,
+      name: userName,
+      age: userAge
+    }
+
+    this.userList.push(newUser);
+  }
 }
