@@ -1,0 +1,91 @@
+<div class="directive-type">
+    <h3>Structural Directives</h3>
+    <div class="directive-section">
+        <h4>ngIf</h4>
+        <div *ngIf="isVisible; else notVisible">
+            <p>This text is visible</p>
+        </div>
+        <div>
+            <ng-template #notVisible>The text is not visible</ng-template>
+        </div>
+        
+        <form>
+            <label>Toggle visibility</label>
+            <input type="checkbox" name="isVisible" [(ngModel)]="isVisible"/>
+        </form>
+    </div>
+    
+    <div class="directive-section">
+        <h4>ngFor</h4>
+        <ul>
+            <li *ngFor="let item of randomList; let i = index">Index {{i+1}} - Value: {{item}}</li>
+        </ul>
+    </div>
+    
+    <div class="directive-section">
+        <h4>ngSwitch</h4>
+        <div [ngSwitch]='switchNumber'>
+            <div *ngSwitchCase="1">One</div>
+            <div *ngSwitchCase="2">Two</div>
+            <div *ngSwitchCase="3">Three</div>
+            <div *ngSwitchCase="4">Four</div>
+            <div *ngSwitchCase="5">Five</div>
+            <div *ngSwitchCase="6">Six</div>
+            <div *ngSwitchDefault>The number is not in the value range of [1,6]</div>
+        </div>
+        <div>
+            <p>Switch number: {{switchNumber}}</p>
+            <button (click)="incrementSwitchNumber()">Increment</button>
+            <button (click)="decrementSwitchNumber()">Decrement</button>
+        </div>
+    </div>
+    <div class="directive-section">
+        <h4>ng-container</h4>
+        <p>
+            I turned the corner
+            <ng-container *ngIf="showHero">
+                and saw a hero. I waved
+            </ng-container>
+            and continued on my way.
+        </p>
+        <form>
+            <label>Show Hero</label>
+            <input type="checkbox" name="showHero" [(ngModel)]="showHero"/>
+        </form>
+
+    </div>
+</div>
+<div class="directive-type">
+    <h3>Attribute Directives</h3>
+    <div class="directive-section">
+        <h4>ngClass</h4>
+        <div [ngClass]="isSpecial ? 'special-styling' : ''">Changing div class</div>
+
+        <form>
+            <label>Change special-ness</label>
+            <input type="checkbox" name="isSpecial" [(ngModel)]="isSpecial"/>
+        </form>
+    </div>
+    <div class="directive-section">
+        <h4>ngClass - Multiple Classes</h4>
+        <div [ngClass]="currentClasses">Here is text</div><br/>
+        <form>
+            <label>Green text?</label>
+            <input type="checkbox" name="greenTextBoolean" [(ngModel)]="greenTextBoolean" (ngModelChange)="updateCurrentClasses()"/>
+        </form>
+        <form>
+            <label>Bold text?</label>
+            <input type="checkbox" name="boldTextBoolean" [(ngModel)]="boldTextBoolean" (ngModelChange)="updateCurrentClasses()"/>
+        </form>
+    </div>
+    <div class="directive-section">
+        <h4>ngStyle</h4>
+        <div [ngStyle]="{'font-style':'italic', 'font-weight': 'bold', 'font-size': '24px'}">
+            This div is in italics, bold and 24 pixels
+        </div>
+    </div>
+
+</div>
+
+
+
