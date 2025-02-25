@@ -8,7 +8,7 @@ import { ModulesPageComponent } from "./modules-page.component";
     declarations: [ModulesPageComponent, SubModulesPage1Component, SubModulesPage2Component],
     imports: [],
     providers: [],
-    bootstrap: [ModulesPageComponent],
+    bootstrap: [],
     exports: [ModulesPageComponent]
 })
 export class ModulesPageModule {}
