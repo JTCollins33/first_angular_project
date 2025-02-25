@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { UserServiceService } from '../services/user-service.service';
 import { User } from '../model/user.type';
-import { FormsModule } from '@angular/forms';
+import { FormArray, FormsModule } from '@angular/forms';
 import { FilterUsersPipe } from '../pipes/filter-users.pipe';
 import { AddUserComponent } from '../add-user/add-user.component';
 
