@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-sub-modules-page2',
-  templateUrl: './sub-modules-page2.component.html',
-  styleUrl: './sub-modules-page2.component.scss',
+  selector: 'app-sub-modules-directivespage',
+  templateUrl: './sub-modules-directivespage.component.html',
+  styleUrl: './sub-modules-directivespage.component.scss',
   standalone: false
 })
-export class SubModulesPage2Component {
+export class SubModulesdirectivespageComponent {
 
 }

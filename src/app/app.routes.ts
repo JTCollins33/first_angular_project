@@ -12,10 +12,10 @@ export const routes: Routes = [
         loadComponent: () => import('./page1/page1.component').then(m => m.Page1Component)
     },
     {
-        path: '2',
-        // component: Page2Component
+        path: 'directives',
+        // component: directivespageComponent
         // loadComponent is for lazy loading, component is for eager loading
-        loadComponent: ()=> import('./page2/page2.component').then(m => m.Page2Component)
+        loadComponent: ()=> import('./directives-page/directives-page.component').then(m => m.DirectivesPageComponent)
     },
     {
         path: 'modules',

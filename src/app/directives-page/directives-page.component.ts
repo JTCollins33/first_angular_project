@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-page2',
+  selector: 'app-directives-page',
   imports: [CommonModule, FormsModule],
-  templateUrl: './page2.component.html',
-  styleUrl: './page2.component.scss'
+  templateUrl: './directives-page.component.html',
+  styleUrl: './directives-page.component.scss'
 })
-export class Page2Component {
+export class DirectivesPageComponent {
   isVisible = true;
   randomList=['1','2','3']
   switchNumber=1

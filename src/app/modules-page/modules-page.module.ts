@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { SubModulesPage1Component } from "./sub-modules-page1/sub-modules-page1.component";
-import { SubModulesPage2Component } from "./sub-modules-page2/sub-modules-page2.component";
+import { SubModulesdirectivespageComponent } from "./sub-modules-directivespage/sub-modules-directivespage.component";
 import { ModulesPageComponent } from "./modules-page.component";
 
 
 @NgModule({
-    declarations: [ModulesPageComponent, SubModulesPage1Component, SubModulesPage2Component],
+    declarations: [ModulesPageComponent, SubModulesPage1Component, SubModulesdirectivespageComponent],
     imports: [],
     providers: [],
     bootstrap: [],
