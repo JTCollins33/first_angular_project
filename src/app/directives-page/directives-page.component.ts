@@ -10,8 +10,24 @@ import { FormsModule } from '@angular/forms';
 })
 export class DirectivesPageComponent {
   isVisible = true;
-  randomList=['1','2','3']
+  randomList=['apple','banana','orange']
   switchNumber=1
+  isSpecial=true
+  greenTextBoolean=false
+  boldTextBoolean=false
+  showHero=false
+
+  currentClasses = {
+    greenText: this.greenTextBoolean,
+    boldText: this.boldTextBoolean,
+  }
+
+  updateCurrentClasses(){
+    this.currentClasses = {
+      greenText: this.greenTextBoolean,
+      boldText: this.boldTextBoolean,
+    }
+  }
 
   incrementSwitchNumber(){
     this.switchNumber+=1

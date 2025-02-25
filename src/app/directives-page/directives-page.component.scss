@@ -2,8 +2,27 @@
     border: 1px solid red;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.directive-type {
+    border: 2px solid blue;
+    margin-top: 10px;
 }
 
 h4 {
     margin-left: 5px;
+}
+
+.special-styling{
+    color: orange;
+}
+
+.greenText{
+    color: green
+}
+
+.boldText{
+    font-weight: bold;
 }
