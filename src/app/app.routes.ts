@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
-import { Page1Component } from './page1/page1.component';
-import { Page2Component } from './page2/page2.component';
 
 export const routes: Routes = [
     {
@@ -11,10 +8,23 @@ export const routes: Routes = [
     },
     {
         path: '1',
-        component: Page1Component
+        // component: Page1Component
+        loadComponent: () => import('./page1/page1.component').then(m => m.Page1Component)
     },
     {
         path: '2',
-        component: Page2Component
+        // component: Page2Component
+        // loadComponent is for lazy loading, component is for eager loading
+        loadComponent: ()=> import('./page2/page2.component').then(m => m.Page2Component)
+    },
+    {
+        path: 'modules',
+        // component: ModulesPageComponent
+        loadComponent: () => import('./modules-page/modules-page.component').then(m => m.ModulesPageComponent)
+    },
+    {
+        path: '**',
+        // component: NotFoundComponent
+        loadComponent: () => import('./not-found/not-found.component').then(m => m.NotFoundComponent)
     }
 ];
