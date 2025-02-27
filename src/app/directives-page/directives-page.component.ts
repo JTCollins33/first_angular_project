@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { UnlessIsThreeDirective } from './unless-is-three.directive';
+import { HighlightingDirective } from './highlighting.directive';
 
 @Component({
   selector: 'app-directives-page',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, UnlessIsThreeDirective, HighlightingDirective],
   templateUrl: './directives-page.component.html',
   styleUrl: './directives-page.component.scss'
 })
@@ -16,6 +18,8 @@ export class DirectivesPageComponent {
   greenTextBoolean=false
   boldTextBoolean=false
   showHero=false
+
+  hiddenNumber=signal(0);
 
   currentClasses = {
     greenText: this.greenTextBoolean,
@@ -34,5 +38,12 @@ export class DirectivesPageComponent {
   }
   decrementSwitchNumber(){
     this.switchNumber-=1
+  }
+
+  incrementHiddenNumber(){
+    this.hiddenNumber.update(n => n+1)
+  }
+  decrementHiddenNumber(){
+    this.hiddenNumber.update(n=>n-1)
   }
 }
