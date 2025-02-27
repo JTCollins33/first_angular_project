@@ -8,9 +8,10 @@ import { SignalCounterService } from './signal-counter.service';
   styleUrl: './signals-page.component.scss'
 })
 export class SignalsPageComponent {
-  //everything for the first example
+  //first example
   count1 = signal(0);
   computedCount1 = computed(()=>{
+    console.log("computing count1")
     return this.count1()*10;
   });
 
@@ -18,7 +19,7 @@ export class SignalsPageComponent {
     this.count1.update(count1 => count1 + 1);
   }
 
-  //everything for the second example
+  //second example
   count2 = signal(0);
   count2Boolean=true;
   computerCount2DoesntUpdate = computed(()=>{
@@ -34,7 +35,7 @@ export class SignalsPageComponent {
     this.count2.update(count2 => count2 + 1);
   }
 
-  //everything for the third example
+  //third example
   list1 = signal(['1', '2']);
   list1ComputedLength = computed(()=> {return this.list1().length})
   plainVariableList = this.list1().length
@@ -43,9 +44,8 @@ export class SignalsPageComponent {
     this.plainVariableList=this.list1().length
   }
 
-  //everything for the fourth example
+  //fourth example
   signalsCounterService = inject(SignalCounterService)
-
 
 
   constructor(){
