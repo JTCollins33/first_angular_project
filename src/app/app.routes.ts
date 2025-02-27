@@ -35,6 +35,10 @@ export const routes: Routes = [
         loadComponent: () => import('./observables-page/observables-page.component').then(m => m.ObservablesPageComponent)
     },
     {
+        path: 'domManipulation',
+        loadComponent: () => import('./dom-manipulation-page/dom-manipulation-page.component').then(m => m.DomManipulationPageComponent)
+    },
+    {
         path: '**',
         // component: NotFoundComponent
         loadComponent: () => import('./not-found/not-found.component').then(m => m.NotFoundComponent)

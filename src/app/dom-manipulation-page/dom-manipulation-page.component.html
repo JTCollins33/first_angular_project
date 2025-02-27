@@ -1,0 +1,15 @@
+<h3>Welcome to the DOM Manipulation Page</h3>
+
+<div class="new-example">
+    <h4>Allowing Renderer2 to Add/Remove elements from DOM</h4>
+    <div #container></div>
+    <button (click)="addElement()">Add Element</button>
+    <button (click)="removeElement()">Remove Element</button>
+</div>
+
+<div class="new-example">
+    <h4 #h4Element>Allowing Renderer2 to Change styles</h4>
+    <p #textElement>Style me!</p>
+    <button (click)="applyStyles()">Apply Styles</button>
+    <button (click)="applyH4Styles()">Apply H4 Styles</button>
+</div>
