@@ -86,6 +86,20 @@
     </div>
 
 </div>
+<div class="directive-type">
+    <h3>Custom Directive</h3>
+    <div class="directive-section">
+        <h4>Hidden Unless Number is Three</h4>
+        <p *appUnlessIsThree="hiddenNumber()">This text is hidden unless the number is three</p>
+        <p>Current value: {{hiddenNumber()}}</p>
+        <button (click)="incrementHiddenNumber()">Increment hidden number</button><br/>
+        <button (click)="decrementHiddenNumber()">Decrement hidden number</button>
+    </div>
+    <div class="directive-section">
+        <h4>Highlighting Directive</h4>
+        <p appHighlighting>Hover over me to see the effect</p>
+    </div>
+</div>
 
 
 
