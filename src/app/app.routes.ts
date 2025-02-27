@@ -31,6 +31,10 @@ export const routes: Routes = [
         loadComponent: () => import('./signals-page/signals-page.component').then(m => m.SignalsPageComponent)
     },
     {
+        path: 'observables',
+        loadComponent: () => import('./observables-page/observables-page.component').then(m => m.ObservablesPageComponent)
+    },
+    {
         path: '**',
         // component: NotFoundComponent
         loadComponent: () => import('./not-found/not-found.component').then(m => m.NotFoundComponent)
