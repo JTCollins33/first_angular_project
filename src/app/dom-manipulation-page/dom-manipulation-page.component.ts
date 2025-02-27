@@ -1,29 +1,29 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Renderer2, signal, ViewChild } from '@angular/core';
+import { SubDomManipulationPageComponent } from './sub-dom-manipulation-page/sub-dom-manipulation-page.component';
 
 @Component({
   selector: 'app-dom-manipulation-page',
-  imports: [],
+  imports: [SubDomManipulationPageComponent],
   templateUrl: './dom-manipulation-page.component.html',
   styleUrl: './dom-manipulation-page.component.scss'
 })
 export class DomManipulationPageComponent {
-  @ViewChild('container') container!: ElementRef;
-  @ViewChild('textElement') textElement!: ElementRef;
-  @ViewChild('h4Element') h4Element!: ElementRef;
-  private createdElement!: HTMLElement;
-
-  createdElementsList: HTMLElement[] = []
-
   constructor(private renderer: Renderer2) {}
 
+  //first example
+  @ViewChild('container') container!: ElementRef;
+  private createdElement!: HTMLElement;
+  createdElementsList: HTMLElement[] = []
+  viewChildExample1String = signal('')
+
   ngOnInit(){
-    console.log("View Child on initialization: "+this.container)
+    this.viewChildExample1String.update(s => s + "View Child on initialization (ngOnInit): "+this.container)
   }
 
   ngAfterViewInit(){
-    console.log("View Child after view initialization: "+this.container.nativeElement)
+    this.viewChildExample1String.update(s => s+" ----- View Child after view initialization (ngAfterViewInit): "+this.container.nativeElement)
+    this.viewChildrenOutputString.set("Example #3: ViewChildFromComponent = "+this.viewChildFromComponent+" <-----> ViewChildFromIdentifier = "+this.viewChildFromIdentifier+" <-----> unreachable h5 element = "+this.viewChildUnreachableElement)
   }
-
   addElement(){
     this.createdElement = this.renderer.createElement('p');
     const text = this.renderer.createText('This is a dynamically added element')
@@ -31,7 +31,6 @@ export class DomManipulationPageComponent {
     this.renderer.appendChild(this.container.nativeElement, this.createdElement)
     this.createdElementsList.push(this.createdElement)
   }
-
   removeElement(){
     if (this.createdElement) {
       this.renderer.removeChild(this.container.nativeElement, this.createdElement);
@@ -42,6 +41,10 @@ export class DomManipulationPageComponent {
     }
   }
 
+  //second example
+  @ViewChild('textElement') textElement!: ElementRef;
+  @ViewChild('h4Element') h4Element!: ElementRef;
+
   applyStyles() {
     this.renderer.setStyle(this.textElement.nativeElement, 'color', 'blue')
     this.renderer.setStyle(this.textElement.nativeElement, 'font-weight', 'bold')
@@ -51,4 +54,26 @@ export class DomManipulationPageComponent {
     this.renderer.setStyle(this.h4Element.nativeElement, 'font-weight', 'italics')
   }
 
+
+  //third example
+  @ViewChild(SubDomManipulationPageComponent)
+  viewChildFromComponent!: SubDomManipulationPageComponent
+
+  @ViewChild('subChild')
+  viewChildFromIdentifier!: SubDomManipulationPageComponent
+
+  //unreachable because ViewChild can only go one layer deep
+  //(cannot find elements which are part of children)
+  @ViewChild('h5Element')
+  viewChildUnreachableElement!: ElementRef
+
+  viewChildrenOutputString = signal('')
+
+
+  //fourth example
+  @ViewChild('subChild2')
+  subChild!: SubDomManipulationPageComponent
+  callChildComponentMethod(){
+    this.subChild.makeALoudNoise()
+  }
 }
