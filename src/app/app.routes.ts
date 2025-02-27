@@ -27,6 +27,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pipes-page/pipes-page.component').then(m => m.PipesPageComponent)
     },
     {
+        path: 'signals',
+        loadComponent: () => import('./signals-page/signals-page.component').then(m => m.SignalsPageComponent)
+    },
+    {
         path: '**',
         // component: NotFoundComponent
         loadComponent: () => import('./not-found/not-found.component').then(m => m.NotFoundComponent)

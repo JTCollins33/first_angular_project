@@ -1,0 +1,30 @@
+<h3>Let's play with some signals</h3>
+
+<div class="signal-example">
+    <h4>Basic signal with computed signal</h4>
+    <p>Base count: {{count1()}}</p>
+    <p>Computed Signal is count times ten: {{computedCount1()}}</p>
+    <button (click)="incrementCount1()">Increment base count</button>
+</div>
+<div class="signal-example">
+    <h4>Basic signal with computed signal which doesn't update</h4>
+    <p>Base count2: {{count2()}}</p>
+    <p>Computed signal that doesn't update: {{computerCount2DoesntUpdate()}}</p>
+    <p>Doesn't update boolean: {{count2Boolean}}</p>
+    <button (click)="count2Boolean=false">Change boolean to false to get computed count to update (maybe)</button><br/><br/>
+    <button (click)="incrementCount2()">Increment base count</button>
+</div>
+
+<div class="signal-example">
+    <h4>When push to signal list must use signal.set or doesn't update</h4>
+    <p>List: {{list1()}}</p>
+    <p>Computed list length: {{list1ComputedLength()}}</p>
+    <p>Plain variable list length: {{plainVariableList}}</p>
+    <button (click)="pushOntoList1()">Add to list but don't change computed length</button>
+</div>
+
+<div class="signal-example">
+    <h4>Importing a signal from elsewhere</h4>
+    <p>Count value: {{signalsCounterService.counter()}}</p>
+    <button (click)="signalsCounterService.incrementCounter()">Increment value</button>
+</div>
