@@ -10,12 +10,6 @@ import { SubDomManipulationPageComponent } from './sub-dom-manipulation-page/sub
 export class DomManipulationPageComponent {
   constructor(private renderer: Renderer2) {}
 
-  //first example
-  @ViewChild('container') container!: ElementRef;
-  private createdElement!: HTMLElement;
-  createdElementsList: HTMLElement[] = []
-  viewChildExample1String = signal('')
-
   ngOnInit(){
     this.viewChildExample1String.update(s => s + "View Child on initialization (ngOnInit): "+this.container)
   }
@@ -24,6 +18,14 @@ export class DomManipulationPageComponent {
     this.viewChildExample1String.update(s => s+" ----- View Child after view initialization (ngAfterViewInit): "+this.container.nativeElement)
     this.viewChildrenOutputString.set("Example #3: ViewChildFromComponent = "+this.viewChildFromComponent+" <-----> ViewChildFromIdentifier = "+this.viewChildFromIdentifier+" <-----> unreachable h5 element = "+this.viewChildUnreachableElement)
   }
+
+  //first example
+  @ViewChild('container') container!: ElementRef;
+  private createdElement!: HTMLElement;
+  createdElementsList: HTMLElement[] = []
+  viewChildExample1String = signal('')
+
+  
   addElement(){
     this.createdElement = this.renderer.createElement('p');
     const text = this.renderer.createText('This is a dynamically added element')
