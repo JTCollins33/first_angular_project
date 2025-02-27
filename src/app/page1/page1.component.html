@@ -3,7 +3,7 @@
 <form>
     <label>Trigger Change Normal</label><br/>
     <input 
-        [value]="searchUsersNormal" 
+        [value]="searchUsersNormal()" 
         (change)="normalChange($event)" 
         placeholder="Search users..."
     />
@@ -37,10 +37,11 @@
         </div>
     }
 </ul>
+<p>Number of users: {{userListLength()}}</p>
 <br/><br/>
 
-@if(addNewUserFlag){
-    <app-add-user [openModal]="addNewUserFlag"/>
+@if(addNewUserFlag()){
+    <app-add-user [openModal]="addNewUserFlag()"/>
 }
 @else {
     <button (click)="toggleAddNewUserFlag()">Add New User</button>

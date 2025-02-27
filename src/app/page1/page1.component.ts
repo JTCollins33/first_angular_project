@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { UserServiceService } from '../services/user-service.service';
 import { User } from '../model/user.type';
 import { FormsModule } from '@angular/forms';
@@ -15,15 +15,16 @@ export class Page1Component {
   userService = inject(UserServiceService);
   userList=signal<Array<User>>([]);
 
-  searchUsersNormal="";
-  searchUsersNg="";
+  // this gets recalculated every time the userList changes
+  userListLength = computed(()=>{
+    return this.userList().length;
+  });
+
+  searchUsersNormal=signal("");
+  searchUsersNg=signal("");
   searchUsers=signal('');
 
-  addNewUserFlag=false;
-
-  runPrint(){
-    console.log("page 1")
-  }
+  addNewUserFlag=signal(false);
 
   ngOnInit(): void {
     this.userList.set(this.userService.getUsers());
@@ -39,11 +40,10 @@ export class Page1Component {
 
   deleteUser(userId: number){
     this.userService.deleteUser(userId);
-    this.ngOnInit();
   }
 
   toggleAddNewUserFlag(){
-    this.addNewUserFlag = !this.addNewUserFlag;
+    this.addNewUserFlag.set(true);
   }
 
 }
