@@ -1,5 +1,6 @@
-import { Component, ElementRef, Renderer2, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, Renderer2, signal, ViewChild, ViewContainerRef } from '@angular/core';
 import { SubDomManipulationPageComponent } from './sub-dom-manipulation-page/sub-dom-manipulation-page.component';
+import { ModalComponent } from './modal.component';
 
 @Component({
   selector: 'app-dom-manipulation-page',
@@ -77,5 +78,17 @@ export class DomManipulationPageComponent {
   subChild!: SubDomManipulationPageComponent
   callChildComponentMethod(){
     this.subChild.makeALoudNoise()
+  }
+
+  //fifth example
+  @ViewChild('vcr1', {read: ViewContainerRef}) vcr1!: ViewContainerRef
+
+  loadModal(){
+    const modalComponentRef = this.vcr1.createComponent(ModalComponent)
+    modalComponentRef.instance.title = 'Dynamic Modal'
+  }
+
+  closeModal(){
+    this.vcr1.clear();
   }
 }

@@ -27,3 +27,10 @@
     <p>Subchild value: {{subChild.subChildValue()}}</p>
     <button (click)="callChildComponentMethod()">Call Child Component Method</button>
 </div>
+
+<div class="new-example">
+    <h4>ViewContainer Ref -- Make Modal Appear/Disappear</h4>
+    <button (click)="loadModal()">Show Modal</button>
+    <button (click)="closeModal()">Close Modal</button><br/>
+    <ng-container #vcr1></ng-container>
+</div>
