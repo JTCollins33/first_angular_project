@@ -1,4 +1,4 @@
-import { Injectable, Output } from '@angular/core';
+import { Injectable, WritableSignal } from '@angular/core';
 import { User } from '../model/user.type';
 
 @Injectable({
@@ -42,10 +42,8 @@ export class UserServiceService {
     return this.userList;
   }
 
-  deleteUser(userId: number){
-    this.userList = this.userList.filter(user => {
-      return user.id !== userId
-    });
+  deleteUser(userId: number, userListSignal: WritableSignal<User[]>){
+    userListSignal.update(users => users.filter(user => user.id !== userId))
   }
 
   addUser(userId: number, userName: string, userAge: number){
