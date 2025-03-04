@@ -1,14 +1,22 @@
-import { Component, ElementRef, Renderer2, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, Renderer2, signal, effect, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { SubDomManipulationPageComponent } from './sub-dom-manipulation-page/sub-dom-manipulation-page.component';
+import { ModalComponent } from './modal.component';
+import { AlertComponent } from './alert.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dom-manipulation-page',
-  imports: [SubDomManipulationPageComponent],
+  imports: [SubDomManipulationPageComponent, AlertComponent, CommonModule],
   templateUrl: './dom-manipulation-page.component.html',
   styleUrl: './dom-manipulation-page.component.scss'
 })
 export class DomManipulationPageComponent {
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2) {
+    effect: (()=>{
+      const container7IsShowing = this.showContainer7();
+      console.log(container7IsShowing)
+    });
+  }
 
   ngOnInit(){
     this.viewChildExample1String.update(s => s + "View Child on initialization (ngOnInit): "+this.container)
@@ -77,5 +85,34 @@ export class DomManipulationPageComponent {
   subChild!: SubDomManipulationPageComponent
   callChildComponentMethod(){
     this.subChild.makeALoudNoise()
+  }
+
+  //fifth example
+  @ViewChild('vcr1', {read: ViewContainerRef}) vcr1!: ViewContainerRef
+
+  loadModal(){
+    const modalComponentRef = this.vcr1.createComponent(ModalComponent)
+    modalComponentRef.instance.title = 'Dynamic Modal'
+  }
+
+  closeModal(){
+    this.vcr1.clear();
+  }
+
+  //seventh example
+  showContainer7 = signal(false);
+  @ViewChild('containerNumber7', {read: ViewContainerRef}) viewContainerRef7!: ViewContainerRef
+  @ViewChild('container7Template', {read: TemplateRef}) templateRef7!: TemplateRef<any>
+
+  toggleShowContainer7(){
+    this.showContainer7.set(!this.showContainer7())
+  }
+
+  addToContainer7(){
+    if(this.viewContainerRef7){
+      this.viewContainerRef7.createEmbeddedView(this.templateRef7)
+    } else {
+      window.alert("Error: Cannot add to container 7 because it is undefined (part of ng-container which is set to false and thus not part of the DOM). To fix this, set containerViewable to true")
+    }
   }
 }
