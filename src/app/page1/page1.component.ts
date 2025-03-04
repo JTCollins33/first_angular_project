@@ -13,7 +13,19 @@ import { AddUserComponent } from '../add-user/add-user.component';
 })
 export class Page1Component {
   userService = inject(UserServiceService);
-  userList=signal<Array<User>>([]);
+  userList=signal<Array<User>>([], {equal: this.areUserArraysEqual});
+
+  areUserArraysEqual(arr1: User[], arr2: User[]){
+    if(arr1.length !== arr2.length){
+      return false
+    }
+    for(let i = 0; i < arr1.length; i++){
+      if(arr1[i].id !== arr2[i].id || arr1[i].age !== arr2[i].age || arr1[i].name !== arr2[i].name){
+        return false
+      }
+    }
+    return true;
+  }
 
   // this gets recalculated every time the userList changes
   userListLength = computed(()=>{
@@ -39,11 +51,10 @@ export class Page1Component {
   }
 
   deleteUser(userId: number){
-    this.userService.deleteUser(userId);
+    this.userService.deleteUser(userId, this.userList)
   }
 
   toggleAddNewUserFlag(){
     this.addNewUserFlag.set(true);
   }
-
 }
