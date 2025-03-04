@@ -1,7 +1,7 @@
 <h3>Welcome to the DOM Manipulation Page</h3>
 
 <div class="new-example">
-    <h4>Allowing Renderer2 to Add/Remove elements from DOM</h4>
+    <h4>1. Allowing Renderer2 to Add/Remove elements from DOM</h4>
     <div #container></div>
     <button (click)="addElement()">Add Element</button>
     <button (click)="removeElement()">Remove Element</button>
@@ -9,28 +9,54 @@
 </div>
 
 <div class="new-example">
-    <h4 #h4Element>Allowing Renderer2 to Change styles</h4>
+    <h4 #h4Element>2. Allowing Renderer2 to Change styles</h4>
     <p #textElement>Style me!</p>
     <button (click)="applyStyles()">Apply Styles</button>
     <button (click)="applyH4Styles()">Apply H4 Styles</button>
 </div>
 
 <div class="new-example">
-    <h4>ViewChild with Components</h4>
+    <h4>3. ViewChild with Components</h4>
     <app-sub-dom-manipulation-page #subChild/>
     <p>{{viewChildrenOutputString()}}</p>
 </div>
 
 <div class="new-example">
-    <h4>Using ViewChild to call a method in child component</h4>
+    <h4>4. Using ViewChild to call a method in child component</h4>
     <app-sub-dom-manipulation-page #subChild2/>
     <p>Subchild value: {{subChild.subChildValue()}}</p>
     <button (click)="callChildComponentMethod()">Call Child Component Method</button>
 </div>
 
 <div class="new-example">
-    <h4>ViewContainer Ref -- Make Modal Appear/Disappear</h4>
+    <h4>5. ViewContainer Ref -- Make Modal Appear/Disappear</h4>
     <button (click)="loadModal()">Show Modal</button>
     <button (click)="closeModal()">Close Modal</button><br/>
     <ng-container #vcr1></ng-container>
+</div>
+
+<div class="new-example">
+    <h4>6. ng-content</h4>
+    <app-alert type="success">
+        <p>Success</p>
+    </app-alert>
+    <app-alert type="danger">
+        <p>Danger</p>
+    </app-alert>
+</div>
+
+<div class="new-example">
+    <h4>7. ng-container</h4>
+    <ng-template #container7Template>
+        <p>This template will only be used for container #7</p>
+    </ng-template>
+    <ng-container #containerNumber7 *ngIf="showContainer7()">
+        <p [ngStyle]="{'font-weight': 'bold'}">START OF CONTAINER</p>
+        <p>Showing container #7</p>
+        <p [ngStyle]="{'font-weight': 'bold'}">END OF CONTAINER</p>
+    </ng-container><br/><br/>
+    <p>ng-container viewable: {{showContainer7()}}</p>
+    <button (click)="toggleShowContainer7()">Toggle ng-container viewable boolean</button>
+    <p>ViewContainerRef: {{viewContainerRef7 ? viewContainerRef7 : 'undefined'}}</p>
+    <button (click)="addToContainer7()">Add to container 7</button>
 </div>
