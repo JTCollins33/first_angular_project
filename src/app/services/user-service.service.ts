@@ -46,13 +46,12 @@ export class UserServiceService {
     userListSignal.update(users => users.filter(user => user.id !== userId))
   }
 
-  addUser(userId: number, userName: string, userAge: number){
+  addUser(userId: number, userName: string, userAge: number, userListSignal: WritableSignal<User[]>){
     const newUser = {
       id: userId,
       name: userName,
       age: userAge
     }
-
-    this.userList.push(newUser);
+    userListSignal.update(users => [...users, newUser])
   }
 }

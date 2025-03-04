@@ -41,7 +41,7 @@
 <br/><br/>
 
 @if(addNewUserFlag()){
-    <app-add-user [openModal]="addNewUserFlag()"/>
+    <app-add-user [openModal]="addNewUserFlag()" [userList]="userList"/>
 }
 @else {
     <button (click)="toggleAddNewUserFlag()">Add New User</button>

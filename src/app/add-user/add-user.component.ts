@@ -1,6 +1,8 @@
-import { Component, inject, Input, input, signal } from '@angular/core';
+import { Component, inject, Input, input, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserServiceService } from '../services/user-service.service';
+import { User } from '../model/user.type';
+
 
 @Component({
   selector: 'app-add-user',
@@ -9,8 +11,8 @@ import { UserServiceService } from '../services/user-service.service';
   styleUrl: './add-user.component.scss'
 })
 export class AddUserComponent {
-  @Input() openModal = true;
-  // openModal = input(true);
+  @Input() openModal!: WritableSignal<boolean>;
+  @Input() userList!: WritableSignal<User[]>;
   userService = inject(UserServiceService);
   newUserName = "";
   newUserAge = 0;
@@ -18,14 +20,18 @@ export class AddUserComponent {
 
   addNewUser(){
     if(this.newUserAge!==0 && this.newUserId!==0 && this.newUserName!==""){
-      this.userService.addUser(this.newUserId, this.newUserName, this.newUserAge);
+      this.userService.addUser(this.newUserId, this.newUserName, this.newUserAge, this.userList);
 
       this.newUserAge=0;
       this.newUserName="";
       this.newUserId=0;
-      this.openModal = !this.openModal;
+      this.openModal.set(!this.openModal());
     } else{
       window.alert("Please enter valid values for all the fields")
     }
+  }
+
+  closeAddUserModal(){
+    this.openModal.set(false)
   }
 }
