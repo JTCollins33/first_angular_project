@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { interval, map, Observable, of } from 'rxjs';
+import { Component } from '@angular/core';
+import { interval, Observable, of } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
