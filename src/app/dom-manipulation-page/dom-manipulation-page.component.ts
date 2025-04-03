@@ -82,9 +82,9 @@ export class DomManipulationPageComponent {
 
   //fourth example
   @ViewChild('subChild2')
-  subChild!: SubDomManipulationPageComponent
+  subChild2!: SubDomManipulationPageComponent
   callChildComponentMethod(){
-    this.subChild.makeALoudNoise()
+    this.subChild2.makeALoudNoise()
   }
 
   //fifth example
